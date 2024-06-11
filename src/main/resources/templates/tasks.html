@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<head>
+    <title>TodoApp</title>
+</head>
+<body>
+<h1>タスク</h1>
+<a href="/tasks/new">タスクを新規作成</a>
+<table>
+    <tr>
+        <th>タスクID</th>
+        <th>タイトル</th>
+        <th>詳細</th>
+        <th>完了</th>
+        <th>編集/削除</th>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.completed}"></td>
+        <td>
+            <a th:href="@{/tasks/edit/{id}(id=${task.id})}">編集</a><br>
+            <a th:href="@{/tasks/delete/{id}(id=${task.id})}">削除</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

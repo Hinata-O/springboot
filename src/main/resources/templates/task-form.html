@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<head>
+    <title>タスク編集画面</title>
+</head>
+<body>
+<h1 th:text="${task.id == 0} ? '新規作成' : '編集'"></h1>
+<form th:action="@{${task.id == 0} ? '/tasks' : '/tasks/update/' + ${task.id}}" th:method="post" th:object="${task}">
+    <input type="hidden" th:field="*{id}" />
+    <label>タイトル: <br/><input type="text" th:field="*{title}" /></label><br/>
+    <label>詳細: <br/><input type="text" th:field="*{description}" /></label><br/>
+    <label>完了: <input type="checkbox" th:field="*{completed}" /></label><br/>
+    <button type="submit">追加/保存</button>
+</form>
+<a href="/tasks">一覧へ戻る</a>
+</body>
+</html>
